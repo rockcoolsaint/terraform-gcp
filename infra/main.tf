@@ -1,7 +1,7 @@
 # Bucket to store website
 resource "google_storage_bucket" "website" {
   provider = google
-  name     = "example-rishab-coffee7"
+  name     = "example-innocent-demo"
   location = "US"
 }
 
@@ -23,7 +23,7 @@ resource "google_storage_bucket_object" "static_site_src" {
   name   = "index.html"
   source = "../website/index.html"
   bucket = google_storage_bucket.website.name
-  
+
 }
 
 # Reserve an external IP
@@ -71,7 +71,7 @@ resource "google_compute_url_map" "website" {
   provider        = google
   name            = "website-url-map"
   default_service = google_compute_backend_bucket.website-backend.self_link
-    host_rule {
+  host_rule {
     hosts        = ["*"]
     path_matcher = "allpaths"
   }
